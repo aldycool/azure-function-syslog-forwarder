@@ -41,7 +41,7 @@ namespace AzureFunctionSyslogForwarder
             // === START DEBUG ONLY ===
             // outputMessage = $"{outputMessage}, LocalIP: {debugGetLocalIP()}";
             // outputMessage = $"{outputMessage}, TrySocketConnect-{appSyslogHost}-{appSyslogPort}: {debugTrySocketConnect(appSyslogHost, Convert.ToInt32(appSyslogPort))}";
-            // outputMessage = $"{outputMessage}, TrySocketConnect-{"4.193.123.145"}-{appSyslogPort}: {debugTrySocketConnect("4.193.123.145", Convert.ToInt32(appSyslogPort))}";
+            // outputMessage = $"{outputMessage}, TrySocketConnect-{"3.192.122.144"}-{appSyslogPort}: {debugTrySocketConnect("3.192.122.144", Convert.ToInt32(appSyslogPort))}";
             // === END DEBUG ONLY ===
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
@@ -69,22 +69,24 @@ namespace AzureFunctionSyslogForwarder
             /*
             [
                 {
+                    "procId": "AzureFirewall",
                     "EventProcessedUtcTime":"2023-04-03T18:02:23.9345201Z",
                     "PartitionId":0,
                     "EventEnqueuedUtcTime":"2023-04-03T18:02:23.769Z",
                     "category":"AzureFirewallNetworkRule",
                     "time":"2023-04-03T17:51:00.395927Z",
-                    "resourceId":"/SUBSCRIPTIONS/F0654BE5-A760-473B-A1FF-22E3FC22CF93/RESOURCEGROUPS/ID-P-RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/ID-P-FW001",
+                    "resourceId":"/SUBSCRIPTIONS/9FF12CED-B581-4E80-A835-191C0653A65E/RESOURCEGROUPS/RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/FW001",
                     "operationName":"AzureFirewallNetworkRuleLog",
                     "msg":"TCP request from 10.0.4.4:44432 to 10.0.6.7:80. Action: Allow. Rule Collection: RevProxy. Rule: WebsiteRequest"
                 },
                 {
+                    "procId": "AzureFirewall",
                     "EventProcessedUtcTime":"2023-04-03T18:02:23.9345201Z",
                     "PartitionId":0,
                     "EventEnqueuedUtcTime":"2023-04-03T18:02:23.769Z",
                     "category":"AzureFirewallNetworkRule",
                     "time":"2023-04-03T17:51:00.44382Z",
-                    "resourceId":"/SUBSCRIPTIONS/F0654BE5-A760-473B-A1FF-22E3FC22CF93/RESOURCEGROUPS/ID-P-RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/ID-P-FW001",
+                    "resourceId":"/SUBSCRIPTIONS/9FF12CED-B581-4E80-A835-191C0653A65E/RESOURCEGROUPS/RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/FW001",
                     "operationName":"AzureFirewallNetworkRuleLog",
                     "msg":"TCP request from 10.0.4.4:44440 to 10.0.6.7:80. Action: Allow. Rule Collection: RevProxy. Rule: WebsiteRequest"
                 }

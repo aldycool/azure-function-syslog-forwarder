@@ -13,7 +13,7 @@ var json = @"
                 ""EventEnqueuedUtcTime"":""2023-04-03T18:02:23.769Z"",
                 ""category"":""AzureFirewallNetworkRule"",
                 ""time"":""2023-04-03T17:51:00.395927Z"",
-                ""resourceId"":""/SUBSCRIPTIONS/F0654BE5-A760-473B-A1FF-22E3FC22CF93/RESOURCEGROUPS/ID-P-RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/ID-P-FW001"",
+                ""resourceId"":""/SUBSCRIPTIONS/9FF12CED-B581-4E80-A835-191C0653A65E/RESOURCEGROUPS/RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/FW001"",
                 ""operationName"":""AzureFirewallNetworkRuleLog"",
                 ""msg"":""TCP request from 10.0.4.4:44432 to 10.0.6.7:80. Action: Allow. Rule Collection: RevProxy. Rule: WebsiteRequest""
             },
@@ -23,7 +23,7 @@ var json = @"
                 ""EventEnqueuedUtcTime"":""2023-04-03T18:02:23.769Z"",
                 ""category"":""AzureFirewallNetworkRule"",
                 ""time"":""2023-04-03T17:51:00.44382Z"",
-                ""resourceId"":""/SUBSCRIPTIONS/F0654BE5-A760-473B-A1FF-22E3FC22CF93/RESOURCEGROUPS/ID-P-RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/ID-P-FW001"",
+                ""resourceId"":""/SUBSCRIPTIONS/9FF12CED-B581-4E80-A835-191C0653A65E/RESOURCEGROUPS/RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/FW001"",
                 ""operationName"":""AzureFirewallNetworkRuleLog"",
                 ""msg"":""TCP request from 10.0.4.4:44440 to 10.0.6.7:80. Action: Allow. Rule Collection: RevProxy. Rule: WebsiteRequest""
             }
