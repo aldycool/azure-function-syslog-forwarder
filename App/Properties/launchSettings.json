@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "azure_function_syslog_forwarder": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7215",
+      "launchBrowser": false
+    }
+  }
+}

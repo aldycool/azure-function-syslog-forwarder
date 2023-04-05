@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to .NET Functions",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:azureFunctions.pickProcess}"
+    },
+    {
+      "name": ".NET Core Launch (TestConsole)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build TestConsole",
+      "program": "${workspaceFolder}/TestConsole/bin/Debug/net6.0/test-azure-function.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/TestConsole",
+      // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+        "name": ".NET Core Attach TestConsole",
+        "type": "coreclr",
+        "request": "attach"
+    }    
+  ]
+}
