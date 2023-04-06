@@ -101,14 +101,15 @@ namespace AzureFunctionSyslogForwarder
                 outputMessage = $"{outputMessage}, List Count: {list.Count}";
 
                 ISyslogMessageSerializer serializer = new SyslogRfc5424MessageSerializer();
-                ISyslogMessageSender sender = new SyslogUdpSender(appSyslogHost, Convert.ToInt32(appSyslogPort));
-                Func<string, string, string, SyslogMessage> createSyslogMessage = (procId, msgId, message) => 
-                { 
+                Func<string, string, string, string, SyslogMessage> createSyslogMessage = (hostName, procId, msgId, message) => 
+                {
+                    string hostNameValue = Environment.MachineName;
+                    if (!string.IsNullOrEmpty(hostName) && hostName != "-") hostNameValue = hostName;
                     SyslogMessage syslogMessage = new SyslogMessage(
                         DateTimeOffset.Now,
                         Facility.UserLevelMessages,
                         Severity.Informational,
-                        Environment.MachineName,
+                        hostNameValue,
                         nameof(AzureFunctionSyslogForwarder),
                         procId,
                         msgId,
@@ -123,6 +124,16 @@ namespace AzureFunctionSyslogForwarder
 
                     try
                     {
+                        string hostName = "-";
+                        if (list[i].TryGetProperty("hostName", out JsonElement hostNameElement))
+                        {
+                            if (hostNameElement.ValueKind == JsonValueKind.String)
+                            {
+                                hostName = hostNameElement.GetString();
+                            }
+                        }
+                        outputMessageInner = $"{outputMessageInner}, hostName: {hostName}";
+
                         string procId = "-";
                         if (list[i].TryGetProperty("procId", out JsonElement procIdElement))
                         {
@@ -145,8 +156,11 @@ namespace AzureFunctionSyslogForwarder
 
                         string json = JsonSerializer.Serialize(list[i]);
 
-                        SyslogMessage syslogMessage = createSyslogMessage(procId, msgId, json);
-                        sender.Send(syslogMessage, serializer);
+                        SyslogMessage syslogMessage = createSyslogMessage(hostName, procId, msgId, json);
+                        using (ISyslogMessageSender sender = new SyslogUdpSender(appSyslogHost, Convert.ToInt32(appSyslogPort)))
+                        {
+                            sender.Send(syslogMessage, serializer);
+                        }
                     }
                     catch (Exception eInner)
                     {

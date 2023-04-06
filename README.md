@@ -2,7 +2,7 @@
 
 - This is an Azure Function to forward Azure Event Hub events that has been processed by Azure Analytics Job into a Syslog Server.
 - In the Azure Analytics Job resource, create a new Input that specifies the Event Hub that you want to process as the input, and then create a new Output with type Azure Function (the Azure Function itself must have been provisioned first, using deployment from this project), and its Query must specify `INTO` the newly created Output Alias, and start the Analytics Job resource.
-- In the Azure Analytics Job resource's Query, we can specify custom fields such as `procId` and `msgId` (these are standard fields from Syslog format), read more about this in [Custom Info on Posted Data](#custom-info-on-posted-data).
+- In the Azure Analytics Job resource's Query, we can specify custom fields such as `hostName`, `procId` and `msgId` (these are standard fields from Syslog format), read more about this in [Custom Info on Posted Data](#custom-info-on-posted-data).
 
 ## Folders
 
@@ -20,6 +20,7 @@
 ## Custom Info on Posted Data
 
 - Add these fields into the Azure Analytics Job's Query:
+  - `hostName`: will be set as Syslog HostName, if not set, this will be the current Azure Function's `Environment.MachineName`.
   - `procId`: will be set as Syslog procId, if not set, this will be Syslog NILVALUE (character: `-`)
   - `msgId`: will be set as Syslog msgId, if not set, this will be Syslog NILVALUE (character: `-`)
 - For example, the Query will be: `SELECT 'myInfo1' as procId, 'myTag1' as msgId, [other fields] FROM [eventhub] ...snip...`
@@ -66,7 +67,7 @@
 
 ```sql
 SELECT
-    'AzureFirewall' AS procId,
+    'AzureFirewall' AS hostName,
     event.EventProcessedUtcTime,
     event.PartitionId,
     event.EventEnqueuedUtcTime,
@@ -93,7 +94,7 @@ CROSS APPLY GetArrayElements(a.records) AS b
 ```json
 [
   {
-    "procId": "AzureFirewall",
+    "hostName": "AzureFirewall",
     "EventProcessedUtcTime":"2023-04-03T18:02:23.9345201Z",
     "PartitionId":0,
     "EventEnqueuedUtcTime":"2023-04-03T18:02:23.769Z",
@@ -104,7 +105,7 @@ CROSS APPLY GetArrayElements(a.records) AS b
     "msg":"TCP request from 10.0.4.4:44432 to 10.0.6.7:80. Action: Allow. Rule Collection: RevProxy. Rule: WebsiteRequest"
   },
   {
-    "procId": "AzureFirewall",
+    "hostName": "AzureFirewall",
     "EventProcessedUtcTime":"2023-04-03T18:02:23.9345201Z",
     "PartitionId":0,
     "EventEnqueuedUtcTime":"2023-04-03T18:02:23.769Z",
