@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "azure-function-syslog-forwarder", "App\azure-function-syslog-forwarder.csproj", "{CE1D53B8-45DE-40F2-81F1-F1645B508E32}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test-azure-function", "TestConsole\test-azure-function.csproj", "{9642B379-3A9F-472A-BB99-8F0536A48F3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE1D53B8-45DE-40F2-81F1-F1645B508E32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1D53B8-45DE-40F2-81F1-F1645B508E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1D53B8-45DE-40F2-81F1-F1645B508E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1D53B8-45DE-40F2-81F1-F1645B508E32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9642B379-3A9F-472A-BB99-8F0536A48F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9642B379-3A9F-472A-BB99-8F0536A48F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9642B379-3A9F-472A-BB99-8F0536A48F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9642B379-3A9F-472A-BB99-8F0536A48F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9F72C0C-9A52-4B9A-9D57-7BBF21F278AA}
+	EndGlobalSection
+EndGlobal
